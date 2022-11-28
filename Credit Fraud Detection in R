@@ -1,0 +1,53 @@
+#Credit card fraud Detetcion with R
+#importing library
+library(ranger)
+library(caret)
+library(data.table)
+
+data <- read_csv("Credit Card Fraud/creditcard.csv")
+
+#Exploration
+data.table(data)
+
+#Data Summary
+summary(data)
+table(data$Class)
+names(data)
+
+
+#Summary amounts
+summary(data$Class)
+sd(data$Amount)
+IQR(data$Amount)
+var(data$Amount)
+
+
+#data manipulation
+data$Amount <- scale(data$Amount)
+
+data2 <- data[,-c(1)]
+head(data2)
+
+set.seed(12)
+library(caTools)
+
+
+sample_data <- sample.split(data2$Class, SplitRatio = 0.80)
+
+train_data <- subset(data2, sample_data== TRUE)
+test_data <- subset(data2, sample_data== FALSE)
+
+dim(train_data)
+dim(test_data)
+
+#fit log it on data
+
+Logistic_model <- glm(Class~., test_data,family= binomial())
+plot(Logistic_model)
+
+Logistic_model1 <- glm(Class~., test_data,family= binomial())
+plot(Logistic_model1)
+
+library(pROC)
+lr.predict <- predict(Logistic_model1.test_data.probability = TRUE)
+auc.gb <- roc(test_data$Class, lr.predict.plot + TRUE, col="green")
