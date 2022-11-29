@@ -9,7 +9,7 @@ data <- read.csv("Credit Card Fraud/creditcard.csv")
 #Exploration
 data.table(data)
 
-#From the statistical table, when the variable is under 0 it implies no fraud. However when it's equal to 1 or more, therefor fraud has occurred. 
+#From the statistical table, when the variable is under 0 it implies no fraud. However when it's equal to 1 or more, fraud has occurred. 
 
 > summary(data)
  
