@@ -4,16 +4,24 @@ library(ranger)
 library(caret)
 library(data.table)
 
-data <- read_csv("Credit Card Fraud/creditcard.csv")
+data <- read.csv("Credit Card Fraud/creditcard.csv")
 
 #Exploration
 data.table(data)
 
-#Data Summary
-summary(data)
-table(data$Class)
-names(data)
+#From the statistical table, when the variable is under 0 it implies no fraud. However when it's equal to 1 or more, therefor fraud has occurred. 
 
+> summary(data)
+ 
+> table(data$Class)
+  0      1 
+284315    492 
+
+> names(data)
+ [1] "Time"   "V1"     "V2"     "V3"     "V4"     "V5"     "V6"     "V7"     "V8"     "V9"    
+[11] "V10"    "V11"    "V12"    "V13"    "V14"    "V15"    "V16"    "V17"    "V18"    "V19"   
+[21] "V20"    "V21"    "V22"    "V23"    "V24"    "V25"    "V26"    "V27"    "V28"    "Amount"
+[31] "Class"
 
 #Summary amounts
 summary(data$Class)
